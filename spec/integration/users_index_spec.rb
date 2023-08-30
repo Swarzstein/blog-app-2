@@ -4,21 +4,27 @@ describe 'Users index', type: :system do
   let!(:author1) { User.create(name: 'Akai321', photo: 'https://Akaiiii.jpg', bio: 'Martial Artist') }
   let!(:author2) { User.create(name: 'Kenshiro', photo: 'https://Kenshiro.jpg', bio: 'Martial Artist') }
   let!(:author3) { User.create(name: 'John48', photo: 'https://john99.jpg', bio: 'Photographer') }
-  let!(:post1) { Post.create(
-    author: author1,
-    title: 'The way of the Water',
-    text: 'In martial arts, the way of the water is the way of the soft and yielding'
-  ) }
-  let!(:post2) { Post.create(
-    author: author2,
-    title: 'The way of the Fire',
-    text: 'In martial arts, the way of the fire is the way of the hard and unyielding'
-  ) }
-  let!(:post3) { Post.create(
-    author: author1,
-    title: 'The way of the Earth',
-    text: 'In martial arts, the way of the earth is the way of the stable and unmovable'
-  ) }
+  let!(:post1) do
+    Post.create(
+      author: author1,
+      title: 'The way of the Water',
+      text: 'In martial arts, the way of the water is the way of the soft and yielding'
+    )
+  end
+  let!(:post2) do
+    Post.create(
+      author: author2,
+      title: 'The way of the Fire',
+      text: 'In martial arts, the way of the fire is the way of the hard and unyielding'
+    )
+  end
+  let!(:post3) do
+    Post.create(
+      author: author1,
+      title: 'The way of the Earth',
+      text: 'In martial arts, the way of the earth is the way of the stable and unmovable'
+    )
+  end
 
   it 'displays all users' do
     visit users_path

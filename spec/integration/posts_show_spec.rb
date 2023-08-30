@@ -28,7 +28,7 @@ describe 'Posts Show', type: :system do
     Comment.create(
       user:,
       post:,
-      text: 'The way of the leaf is not the way of the coward,'\
+      text: 'The way of the leaf is not the way of the coward,' \ 
             ' ninjas are not cowards but warriors who fight in the shadows.'
     )
   end
@@ -57,8 +57,8 @@ describe 'Posts Show', type: :system do
     visit user_post_path(author, post)
     expect(page).to have_content('I prefer the way of the leaf, which is the way of the ninja.')
     expect(page).to have_content('The way of the leaf is the way of the coward.')
-    expect(page).to have_content('The way of the leaf is not the way of the coward,'\
-                                 'ninjas are not cowards'\
+    expect(page).to have_content('The way of the leaf is not the way of the coward,'\ 
+                                 'ninjas are not cowards'\ 
                                  ' but warriors who fight in the shadows.')
   end
 end

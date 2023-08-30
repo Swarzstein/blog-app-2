@@ -43,7 +43,7 @@ describe 'Posts Index', type: :system do
     Comment.create(
       user:,
       post: post1,
-      text: 'The way of the leaf is not the way of the coward,'\
+      text: 'The way of the leaf is not the way of the coward,'\ 
             ' ninjas are not cowards but warriors who fight in the shadows.'
     )
   end

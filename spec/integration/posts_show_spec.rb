@@ -1,49 +1,53 @@
 require 'rails_helper'
-describe 'Users Show', type: :feature do
-  let :user do
-    User.create(name: 'Camilo', photo: 'https://picture.jpg', bio: 'Test bio number 1')
+
+describe 'Posts Show', type: :system do
+  let!(:author) { User.create(name: 'Akai321', photo: 'https://Akaiiii.jpg', bio: 'Martial Artist') }  
+  let!(:user) { User.create(name: 'Kenshiro', photo: 'https://Kenshiro.jpg', bio: 'Martial Artist') }
+  let!(:post) { Post.create(
+    author: author,
+    title: 'The way of the Water',
+    text: 'In martial arts, the way of the water is the way of the soft and yielding, like a river. The water is able to flow around any obstacle, and is able to wear down the hardest stone.'
+  ) }
+  let!(:comment1) { Comment.create(
+    user: user,
+    post: post,
+    text: 'I prefer the way of the leaf, which is the way of the ninja.'
+  ) }
+  let!(:comment2) { Comment.create(
+    user: author,
+    post: post,
+    text: 'The way of the leaf is the way of the coward.'
+  ) }
+  let!(:comment3) { Comment.create(
+    user: user,
+    post: post,
+    text: 'The way of the leaf is not the way of the coward, ninjas are not cowards but warriors who fight in the shadows.'
+  ) }
+
+  it 'displays the post title' do
+    visit user_post_path(author, post)
+    expect(page).to have_content('The way of the Water')
   end
-  let!(:post1) do
-    Post.create(author_id: user.id, title: 'Post number 1 test',
-                text: 'random comment for a random test')
+
+  it 'displays the post text' do
+    visit user_post_path(author, post)
+    expect(page).to have_content('In martial arts, the way of the water is the way of the soft and yielding, like a river. The water is able to flow around any obstacle, and is able to wear down the hardest stone.')
   end
-  let!(:post2) do
-    Post.create(author_id: user.id, title: 'test Title 2',
-                text: 'amazing test you are doing! ')
+  
+  it 'displays the post author' do
+    visit user_post_path(author, post)
+    expect(page).to have_content('Akai321')
   end
-  let!(:post3) do
-    Post.create(author_id: user.id, title: 'test title 3', text: 'test for post3 ')
+
+  it 'displays the number of comments the post has' do
+    visit user_post_path(author, post)
+    expect(page).to have_content('Comments: 3')
   end
-  before { visit user_path(user) }
-  scenario "I can see the user's profile picture" do
-    expect(page).to have_css("img[src*='https://picture.jpg']")
-  end
-  scenario "I can see the user's username" do
-    expect(page).to have_content('Camilo')
-  end
-  scenario 'I can see the number of posts the user has written' do
-    expect(page).to have_content('Number of posts: 3')
-  end
-  scenario "I can see the user's bio" do
-    expect(page).to have_content('Test bio number 1')
-  end
-  scenario "I can see the user's first 3 posts" do
-    expect(page).to have_content('Post number 1 test')
-    expect(page).to have_content('test Title 2')
-    expect(page).to have_content('test title 3')
-  end
-  scenario "I can see a button that lets me view all of a user's posts" do
-    expect(page).to have_link('See all posts')
-  end
-  scenario "When I click a user's post, it redirects me to that post's show page" do
-    click_link 'Post number 1 test'
-    expect(page).to have_content('Post number 1 test')
-    expect(page).to have_content('random comment for a random test')
-  end
-  scenario "When I click to see all posts, it redirects me to the user's post's index page" do
-    click_link 'See all posts'
-    expect(page).to have_content('Post number 1 test')
-    expect(page).to have_content('test Title 2')
-    expect(page).to have_content('test title 3')
+
+  it 'displays all comments for the post' do
+    visit user_post_path(author, post)
+    expect(page).to have_content('I prefer the way of the leaf, which is the way of the ninja.')
+    expect(page).to have_content('The way of the leaf is the way of the coward.')
+    expect(page).to have_content('The way of the leaf is not the way of the coward, ninjas are not cowards but warriors who fight in the shadows.')
   end
 end

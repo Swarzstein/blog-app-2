@@ -3,6 +3,8 @@ class Post < ApplicationRecord
   has_many :likes
   has_many :comments
 
+  has_many :most_recent_comments, -> { includes(:user).order(created_at: :desc).limit(5) }, class_name: 'Comment'
+
   after_save :post_counter_update
 
   validates :title, presence: true, length: { maximum: 250 }
@@ -13,7 +15,7 @@ class Post < ApplicationRecord
     author.increment!(:posts_counter)
   end
 
-  def most_recent_comments
-    comments.order(created_at: :desc).limit(5)
-  end
+  # def most_recent_comments
+  #   comments.order(created_at: :desc).limit(5)
+  # end
 end

@@ -1,5 +1,5 @@
 require 'rails_helper'
-describe 'Users Show', type: :system do
+describe 'Users Show', type: :feature do
   let :user do
     User.create(name: 'Camilo', photo: 'https://picture.jpg', bio: 'Test bio number 1')
   end

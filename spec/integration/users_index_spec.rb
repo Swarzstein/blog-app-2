@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Users index', type: :system do
+describe 'Users index', type: :feature do
   let!(:author1) { User.create(name: 'Akai321', photo: 'https://Akaiiii.jpg', bio: 'Martial Artist') }
   let!(:author2) { User.create(name: 'Kenshiro', photo: 'https://Kenshiro.jpg', bio: 'Martial Artist') }
   let!(:author3) { User.create(name: 'John48', photo: 'https://john99.jpg', bio: 'Photographer') }

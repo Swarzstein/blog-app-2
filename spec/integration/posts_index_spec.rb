@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-# integration test for posts index
-describe 'Posts Index', type: :system do
+describe 'Posts Index', type: :feature do
   let!(:author) { User.create(name: 'Akai321', photo: 'https://Akaiiii.jpg', bio: 'Martial Artist') }
   let!(:user) { User.create(name: 'Kenshiro', photo: 'https://Kenshiro.jpg', bio: 'Martial Artist') }
   let!(:post1) do
@@ -89,9 +88,8 @@ describe 'Posts Index', type: :system do
     visit user_posts_path(author)
     expect(page).to have_content('I prefer the way of the leaf, which is the way of the ninja.')
     expect(page).to have_content('The way of the leaf is the way of the coward.')
-    expect(page).to have_content('The way of the leaf is not the way of the coward,' \
-                                 'ninjas are not cowards ' \
-                                 'but warriors who fight in the shadows.')
+    expect(page).to have_content('The way of the leaf is not the way of the coward, ' \
+                                 'ninjas are not cowards but warriors who fight in the shadows.')
     expect(page).to have_content('I resonate with the way of the fire.')
     expect(page).to have_content('finally we agree on something.')
   end

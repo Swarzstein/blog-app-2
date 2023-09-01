@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Posts Show', type: :system do
+describe 'Posts Show', type: :feature do
   let!(:author) { User.create(name: 'Akai321', photo: 'https://Akaiiii.jpg', bio: 'Martial Artist') }
   let!(:user) { User.create(name: 'Kenshiro', photo: 'https://Kenshiro.jpg', bio: 'Martial Artist') }
   let!(:post) do
@@ -60,5 +60,11 @@ describe 'Posts Show', type: :system do
     expect(page).to have_content('The way of the leaf is not the way of the coward,' \
                                  'ninjas are not cowards ' \
                                  'but warriors who fight in the shadows.')
+  end
+
+  it 'displays the comment author for each comment' do
+    visit user_post_path(author, post)
+    expect(page).to have_content('Kenshiro')
+    expect(page).to have_content('Akai321')
   end
 end

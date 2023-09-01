@@ -90,8 +90,8 @@ describe 'Posts Index', type: :system do
     expect(page).to have_content('I prefer the way of the leaf, which is the way of the ninja.')
     expect(page).to have_content('The way of the leaf is the way of the coward.')
     expect(page).to have_content('The way of the leaf is not the way of the coward,' \
-                                  'ninjas are not cowards ' \
-                                  'but warriors who fight in the shadows.')
+                                 'ninjas are not cowards ' \
+                                 'but warriors who fight in the shadows.')
     expect(page).to have_content('I resonate with the way of the fire.')
     expect(page).to have_content('finally we agree on something.')
   end

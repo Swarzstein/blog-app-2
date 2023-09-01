@@ -60,6 +60,10 @@ describe 'Posts Index', type: :feature do
       text: 'finally we agree on something.'
     )
   end
+  let!(:like1) { Like.create(user: author, post: post1) }
+  let!(:like2) { Like.create(user: author, post: post2) }
+  let!(:like5) { Like.create(user: user, post: post2) }
+
 
   it 'displays author\'s info' do
     visit user_posts_path(author)
@@ -82,6 +86,13 @@ describe 'Posts Index', type: :feature do
     expect(page).to have_content('Comments: 3')
     expect(page).to have_content('Comments: 2')
     expect(page).to have_content('Comments: 0')
+  end
+
+  it 'displays the number of likes each post has' do
+    visit user_posts_path(author)
+    expect(page).to have_content('Likes: 1')
+    expect(page).to have_content('Likes: 2')
+    expect(page).to have_content('Likes: 0')
   end
 
   it 'displays the comments for each post' do

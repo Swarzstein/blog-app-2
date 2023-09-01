@@ -62,8 +62,7 @@ describe 'Posts Index', type: :feature do
   end
   let!(:like1) { Like.create(user: author, post: post1) }
   let!(:like2) { Like.create(user: author, post: post2) }
-  let!(:like5) { Like.create(user: user, post: post2) }
-
+  let!(:like5) { Like.create(user:, post: post2) }
 
   it 'displays author\'s info' do
     visit user_posts_path(author)

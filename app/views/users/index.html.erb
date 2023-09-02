@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>users</title>
+  <%= stylesheet_link_tag "styles" %>
+</head>
+<body>
+  <h1>Users list</h1>
+  <a href=<%= "/users/#{@current_user.id}/posts/new"%> >
+    <button>New Post</button>
+    </a>
+  <div class="container">
+    <%@users.each do |user|%>
+      <a href=<%= "users/#{user.id}"%>>
+      <div class="user">
+        <div class="user_image">
+        <% if user.photo %>
+          <img src=<%= user.photo %> alt="Profile picture">
+        <% else %>
+          <img src="no_pic.png" alt="Profile picture">
+        <% end %>
+        </div>
+        <div class="user user-info">
+          <h2><%= user.name %></h2>
+          <p>Number of posts: <%= user.posts_counter %></p>
+        </div>
+      </div>
+      </a>
+    <%end%>
+  </div>
+</body>
+</html>
